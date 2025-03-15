@@ -27,18 +27,18 @@ def chat():
 
     try:
         # Χρησιμοποιούμε το μοντέλο Gemini AI
-        model = genai.GenerativeModel("gemini-2.0")  # Χρησιμοποιούμε το σωστό μοντέλο
+        model = genai.GenerativeModel("gemini-pro")  # Χρησιμοποιούμε το gemini-pro
         response = model.generate_content(user_message)
         ai_response = response.text if response.text else "Συγγνώμη, δεν κατάλαβα."
 
         # Εκτύπωση για debugging
-        print(f"AI response: {ai_response}")
+        print(f"AI Response: {ai_response}")
 
         return flask.jsonify({"response": ai_response})  # Επιστροφή της απάντησης από το AI
 
     except Exception as e:
         # Εκτύπωση του σφάλματος για debugging
-        print(f"Error: {str(e)}")
+        print(f"Error: {e}")
         return flask.jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
